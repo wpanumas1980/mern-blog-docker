@@ -2,7 +2,7 @@ version: "3"
 services: 
   api-server:
     image: blog-server
-    restart: always
+    # restart: always
     ports: 
       - "5000:5000"
     networks: 
@@ -11,7 +11,7 @@ services:
       - database
   database:
     image: mongo
-    restart: always
+    # restart: always
     ports: 
       - "27017:27017"
     networks: 
@@ -20,7 +20,7 @@ services:
       - mongo-data:/data/db
   web-service:
     image: mongo-express
-    restart: always
+    # restart: always
     ports: 
       - "8081:8081"
     networks: 
