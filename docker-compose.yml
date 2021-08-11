@@ -2,20 +2,24 @@ version: "3"
 services: 
   api-server:
     image: blog-server
-    # restart: always
+    stdin_open: true
     ports: 
       - "5000:5000"
     networks: 
       - mern-app
     depends_on: 
-      - database
-  database:
+      - mongo
+  mongo:
     image: mongo
     # restart: always
     ports: 
       - "27017:27017"
     networks: 
       - mern-app
+    # environment:
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: pass
+      # MONGO_INITDB_DATABASE: blog
     volumes: 
       - mongo-data:/data/db
   web-service:
@@ -28,8 +32,11 @@ services:
     environment: 
       ME_CONFIG_OPTIONS_EDITORTHEME: ambiance
       ME_CONFIG_BASICAUTH_USERNAME: admin
-      ME_CONFIG_MONGODB_AUTH_PASSWORD: pass
-      ME_CONFIG_MONGODB_URL: mongodb://database
+      ME_CONFIG_BASICAUTH_PASSWORD: qwerty
+      # ME_CONFIG_MONGODB_AUTH_USERNAME: root
+      # ME_CONFIG_MONGODB_AUTH_PASSWORD: pass
+      # ME_CONFIG_MONGODB_AUTH_DATABASE: blog
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
 networks:
   mern-app:
     driver: bridge 
