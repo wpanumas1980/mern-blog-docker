@@ -7,9 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/auth",authRoute);
-app.use('/',()=>{
-  res.send({message:'hello'})
-})
+
 mongoose
   .connect(process.env.CONNECTION_URL, { 
     useNewUrlParser: true, 
