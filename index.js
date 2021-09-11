@@ -35,7 +35,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: true
   })
   .then(() => app.listen(process.env.PORT,
     () => console.log(`Web server listening at: http://localhost:${process.env.PORT}`)))
